@@ -13,27 +13,67 @@ const CATS = [
   { id: "emotional", label: "情感", color: "#D4A843", icon: "💛" },
 ];
 
-const QUIZ = [
-  { q: "家裡的衛生紙、洗衣精快用完了，通常是誰先注意到？", icon: "🧻", opts: ["幾乎都是我", "大多是我", "差不多各半", "對方比較常注意"] },
-  { q: "小孩（或寵物）下次看醫生的時間，誰記在腦裡？", icon: "🏥", opts: ["一定是我", "我記得並提醒對方", "會一起記在行事曆", "對方會主動追蹤"] },
-  { q: "過年過節準備禮物、訂餐廳、安排行程，誰在規劃？", icon: "🎁", opts: ["從頭到尾都是我", "我規劃，對方執行部分", "一起討論分工", "對方會主動張羅"] },
-  { q: "另一半說「你叫我做什麼我就做」，你的感受是？", icon: "😮‍💨", opts: ["很累，「想到要做什麼」才最累", "有點無奈，但至少願意做", "還好，有固定分工", "對方會主動看到需要做的事"] },
-  { q: "半夜小孩哭了／寵物吐了，誰先醒來處理？", icon: "🌙", opts: ["永遠是我", "通常我先醒", "我們會輪流", "對方警覺性比我高"] },
-  { q: "帳單繳費、保險到期、證件更新，誰在追蹤？", icon: "📋", opts: ["全部在我腦裡", "大部分我處理", "有明確分工", "對方比較擅長這些"] },
-  { q: "你多常覺得「每個人都在等我安排一切」？", icon: "🫠", opts: ["幾乎每天", "一週好幾次", "偶爾", "很少"] },
-  { q: "安撫情緒、維繫親友關係，主要是誰在做？", icon: "💛", opts: ["都是我，沒人注意到", "主要是我", "各有擅長部分", "對方很細心"] },
-  { q: "你曾因「沒人注意到你的付出」而感到委屈嗎？", icon: "🥲", opts: ["經常", "特別累的時候會", "偶爾，但能溝通", "很少，家人會感謝"] },
-  { q: "如果你消失一週，家裡會發生什麼事？", icon: "🏝️", opts: ["一切崩潰", "很混亂但勉強撐過", "有點不順但大致OK", "可以運轉得很好"] },
+const MODES = [
+  { id: "family", label: "家人", icon: "👨‍👩‍👧", desc: "和家人同住", color: "#D4456A" },
+  { id: "couple", label: "情侶", icon: "💑", desc: "和另一半同居", color: "#E8A0BF" },
+  { id: "roommate", label: "合租", icon: "🏠", desc: "和室友同住", color: "#5B9ECC" },
 ];
+
+const QUIZZES = {
+  family: [
+    { q: "家裡的衛生紙、洗衣精快用完了，通常是誰先注意到？", icon: "🧻", opts: ["幾乎都是我", "大多是我", "差不多各半", "其他家人比較常注意"] },
+    { q: "小孩（或寵物）下次看醫生的時間，誰記在腦裡？", icon: "🏥", opts: ["一定是我", "我記得並提醒家人", "會一起記在行事曆", "其他家人會主動追蹤"] },
+    { q: "過年過節準備禮物、訂餐廳、安排行程，誰在規劃？", icon: "🎁", opts: ["從頭到尾都是我", "我規劃，家人執行部分", "一起討論分工", "其他家人會主動張羅"] },
+    { q: "有人說「你叫我做什麼我就做」，你的感受是？", icon: "😮‍💨", opts: ["很累，「想到要做什麼」才最累", "有點無奈，但至少願意做", "還好，有固定分工", "家人會主動看到需要做的事"] },
+    { q: "半夜小孩哭了／寵物吐了，誰先醒來處理？", icon: "🌙", opts: ["永遠是我", "通常我先醒", "我們會輪流", "其他家人警覺性比我高"] },
+    { q: "帳單繳費、保險到期、證件更新，誰在追蹤？", icon: "📋", opts: ["全部在我腦裡", "大部分我處理", "有明確分工", "其他家人比較擅長這些"] },
+    { q: "你多常覺得「每個人都在等我安排一切」？", icon: "🫠", opts: ["幾乎每天", "一週好幾次", "偶爾", "很少"] },
+    { q: "安撫情緒、維繫親友關係，主要是誰在做？", icon: "💛", opts: ["都是我，沒人注意到", "主要是我", "各有擅長部分", "其他家人很細心"] },
+    { q: "你曾因「沒人注意到你的付出」而感到委屈嗎？", icon: "🥲", opts: ["經常", "特別累的時候會", "偶爾，但能溝通", "很少，家人會感謝"] },
+    { q: "如果你消失一週，家裡會發生什麼事？", icon: "🏝️", opts: ["一切崩潰", "很混亂但勉強撐過", "有點不順但大致OK", "可以運轉得很好"] },
+  ],
+  couple: [
+    { q: "家裡日用品快沒了（衛生紙、洗碗精等），通常誰先發現？", icon: "🧻", opts: ["幾乎都是我", "大多是我", "差不多各半", "對方比較常注意"] },
+    { q: "你們的紀念日、對方爸媽生日，誰在記？", icon: "🎂", opts: ["全部在我腦裡", "我記得並提醒對方", "會一起記在行事曆", "對方記得比我清楚"] },
+    { q: "約會、旅行、假日行程，通常誰在規劃？", icon: "✈️", opts: ["從頭到尾都是我", "我提案，對方配合", "一起討論", "對方會主動安排"] },
+    { q: "對方說「你想去哪就去哪」「你決定就好」，你的感受是？", icon: "😮‍💨", opts: ["很累，每次都要我決定", "有點無奈，但習慣了", "還好，重要的事會一起討論", "對方不會這樣，會主動提意見"] },
+    { q: "家裡要打掃、洗衣服、倒垃圾，誰先動手？", icon: "🧹", opts: ["永遠是我先做", "通常是我，偶爾對方會", "差不多輪流", "對方比我勤快"] },
+    { q: "繳房租、水電帳單、網路費，誰在追蹤？", icon: "📋", opts: ["全部我在處理", "大部分我，少數對方", "有明確分工", "對方比較擅長這些"] },
+    { q: "你多常覺得「這段關係裡我比較操心」？", icon: "🫠", opts: ["幾乎每天", "一週好幾次", "偶爾", "很少"] },
+    { q: "對方心情不好的時候，誰在安撫和傾聽？", icon: "💛", opts: ["都是我在顧對方情緒", "主要是我", "互相會關心", "對方也很會照顧我情緒"] },
+    { q: "你曾覺得自己付出很多但對方沒注意到嗎？", icon: "🥲", opts: ["經常", "有時候，尤其是累的時候", "偶爾，但說了對方會理解", "很少，對方會表達感謝"] },
+    { q: "如果你一週不做任何家事和規劃，會怎樣？", icon: "🏝️", opts: ["家裡會變災難現場", "很混亂但對方勉強能撐", "有點不順但大致OK", "對方可以自己打理好"] },
+  ],
+  roommate: [
+    { q: "公共空間的衛生紙、垃圾袋沒了，通常誰去補？", icon: "🧻", opts: ["幾乎都是我", "大多是我", "會輪流或分攤", "室友比較主動"] },
+    { q: "房租、水電、網路費到期，誰在追蹤和催繳？", icon: "💰", opts: ["全部我在處理", "大部分是我提醒大家", "有人負責記帳", "室友會主動繳"] },
+    { q: "公共區域（客廳、廚房、浴室）誰在維持整潔？", icon: "🧹", opts: ["幾乎都是我在打掃", "主要是我，室友偶爾幫忙", "有排班或輪流", "室友比我愛乾淨"] },
+    { q: "冰箱裡東西過期、水槽堆碗盤，誰先處理？", icon: "🍽️", opts: ["永遠是我受不了先動手", "通常是我，但會碎唸", "會互相提醒", "室友會自己處理"] },
+    { q: "有訪客來、要收包裹、跟房東溝通，誰在對外聯繫？", icon: "📱", opts: ["都是我在處理", "大部分是我", "看誰有空", "室友會主動處理"] },
+    { q: "室友做了讓你不舒服的事，通常怎麼處理？", icon: "😤", opts: ["我忍著不說，自己消化", "我會暗示但不直說", "會直接溝通", "室友很有sense不太需要講"] },
+    { q: "你多常覺得「這個家只有我在管」？", icon: "🫠", opts: ["幾乎每天", "一週好幾次", "偶爾", "很少"] },
+    { q: "搬進來的時候，添購生活用品和佈置，誰出力最多？", icon: "📦", opts: ["幾乎都是我張羅", "主要是我，室友出一些錢", "大家一起分擔", "室友比我積極"] },
+    { q: "你覺得室友有注意到你為這個空間做的事嗎？", icon: "🥲", opts: ["完全沒有", "偶爾會提到", "有時候會說謝謝", "室友經常表達感謝"] },
+    { q: "如果你一週完全不管公共事務，會怎樣？", icon: "🏝️", opts: ["整個家會髒到崩潰", "會變很亂但勉強能住", "有點不方便但還好", "室友可以維持運作"] },
+  ],
+};
 
 const SCORES = [3, 2, 1, 0]; // per option index
 
-function getResult(score) {
+function getResult(score, mode) {
   const pct = Math.round((score / 30) * 100);
-  if (pct >= 80) return { pct, level: "嚴重超載", color: "#D4456A", title: "你是這個家的「隱形 CEO」", desc: "你承擔了絕大部分的心理負擔和隱形勞務。這不只是「比較操心」，而是長期處於沒人看見的高壓狀態。你值得被看見，也值得被分擔。", advice: "建議先從「列出所有你在做的隱形工作」開始，讓家人真正理解這份清單有多長。" };
-  if (pct >= 60) return { pct, level: "明顯失衡", color: "#E88B3E", title: "你扛的比你以為的還多", desc: "你承擔了大部分的規劃、記憶和協調工作。另一半有參與，但「想到要做什麼」主要還是落在你身上。", advice: "試著把「腦力勞動」和「情感勞動」也列入分工討論，不只是體力活。" };
-  if (pct >= 35) return { pct, level: "略有不均", color: "#D4A843", title: "還不錯，但有進步空間", desc: "你們的分工有一定基礎，但某些隱形勞務可能還是比較集中。好消息是，你們已經有溝通的基礎。", advice: "定期做一次「分工盤點」，確認雙方對負擔的感受一致。" };
-  return { pct, level: "相當均衡", color: "#5BA86C", title: "你們的分工很健康！", desc: "你們建立了相對均衡的家務和情緒勞動分工，代表你們有良好的溝通和相互尊重。", advice: "持續保持開放的對話，隨著家庭階段變化適時調整。" };
+
+  const labels = {
+    family: { high: "家庭隱形 CEO", mid: "家庭主要操心者", low: "分工意識不錯", good: "模範家庭分工", unit: "家庭", other: "家人" },
+    couple: { high: "感情裡的隱形 CEO", mid: "關係中的主要操心者", low: "分工還算平衡", good: "模範情侶分工", unit: "這段關係", other: "另一半" },
+    roommate: { high: "合租界的隱形 CEO", mid: "宿舍的主要操心者", low: "室友分工還行", good: "模範室友分工", unit: "這個家", other: "室友" },
+  };
+  const L = labels[mode] || labels.family;
+
+  if (pct >= 80) return { pct, level: "嚴重超載", color: "#D4456A", title: `你是${L.unit}的「${L.high}」`, desc: `你承擔了絕大部分的心理負擔和隱形勞務。這不只是「比較操心」，而是長期處於沒人看見的高壓狀態。你值得被看見，也值得被分擔。`, advice: `建議先從「列出所有你在做的隱形工作」開始，讓${L.other}真正理解這份清單有多長。` };
+  if (pct >= 60) return { pct, level: "明顯失衡", color: "#E88B3E", title: "你扛的比你以為的還多", desc: `你承擔了大部分的規劃、記憶和協調工作。${L.other}有參與，但「想到要做什麼」主要還是落在你身上。`, advice: `試著把「腦力勞動」——規劃、追蹤、提醒——也列入分工討論，不只是看得見的體力活。` };
+  if (pct >= 35) return { pct, level: "略有不均", color: "#D4A843", title: "還不錯，但有進步空間", desc: `你們的分工有一定基礎，但某些隱形勞務可能還是比較集中在你身上。好消息是，你們已經有溝通的基礎。`, advice: "定期做一次「分工盤點」，確認大家對負擔的感受一致。" };
+  return { pct, level: "相當均衡", color: "#5BA86C", title: `你們的分工很健康！`, desc: `你們建立了相對均衡的勞務分工，代表你們有良好的溝通和相互尊重。`, advice: "持續保持開放的對話，隨著生活變化適時調整。" };
 }
 
 const SAMPLE_TASKS = [
@@ -127,27 +167,62 @@ function QuizLanding({ onStart }) {
       <div style={{ position: "absolute", top: -60, left: "50%", transform: "translateX(-50%)", width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, #E8A0BF22 0%, transparent 70%)", animation: "glow 4s ease infinite", pointerEvents: "none" }} />
       <div style={{ display: "inline-block", background: "#E8A0BF18", color: "#C4849E", fontSize: 13, fontWeight: 500, padding: "6px 18px", borderRadius: 20, marginBottom: 28, letterSpacing: 1 }}>2 分鐘小測驗</div>
       <h1 style={{ fontFamily: "'Noto Serif TC', serif", fontSize: 36, fontWeight: 900, lineHeight: 1.35, color: "#3A3330", marginBottom: 20 }}>
-        你家的<br /><span style={{ background: "linear-gradient(135deg, #E8A0BF, #D4456A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>情緒勞務</span><br />分配健康嗎？
+        你們的<br /><span style={{ background: "linear-gradient(135deg, #E8A0BF, #D4456A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>隱形勞務</span><br />分配健康嗎？
       </h1>
       <p style={{ fontSize: 15, lineHeight: 1.8, color: "#8C8278", marginBottom: 36, fontWeight: 300 }}>
-        買菜、預約掛號、記得繳費、安撫情緒、規劃行程⋯⋯<br />
+        倒垃圾、記得繳費、補日用品、安撫情緒⋯⋯<br />
         這些「沒有人叫你做，但不做就沒人做」的事，<br />你承擔了多少？
       </p>
       <Card style={{ display: "flex", alignItems: "center", gap: 20, padding: "22px 18px", marginBottom: 36, textAlign: "center" }}>
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: "'Noto Serif TC', serif", fontSize: 32, fontWeight: 900, color: "#D4456A", marginBottom: 6 }}>72%</div>
-          <div style={{ fontSize: 11, lineHeight: 1.5, color: "#B0A498" }}>的家庭中，媽媽承擔<br />超過 2/3 的隱形勞務</div>
+          <div style={{ fontSize: 11, lineHeight: 1.5, color: "#B0A498" }}>的同住關係中<br />有一方承擔超過 2/3<br />的隱形勞務</div>
         </div>
         <div style={{ width: 1, height: 44, background: "#EDE8E2" }} />
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: "'Noto Serif TC', serif", fontSize: 32, fontWeight: 900, color: "#D4456A", marginBottom: 6 }}>3x</div>
-          <div style={{ fontSize: 11, lineHeight: 1.5, color: "#B0A498" }}>女性花在「計劃與協調」<br />的時間是男性的三倍</div>
+          <div style={{ fontSize: 11, lineHeight: 1.5, color: "#B0A498" }}>「計劃與協調」的<br />時間差距可達三倍</div>
         </div>
       </Card>
       <Btn full onClick={onStart}>開始測驗 →</Btn>
-      <div style={{ fontSize: 12, color: "#C4B8AE", marginTop: 14, marginBottom: 44 }}>10 道情境題 ・ 完全匿名 ・ 可分享結果</div>
+      <div style={{ fontSize: 12, color: "#C4B8AE", marginTop: 14, marginBottom: 44 }}>適用於家人 ・ 情侶 ・ 室友 ・ 完全匿名</div>
       <div style={{ fontSize: 14, fontStyle: "italic", color: "#B0A498", lineHeight: 1.8, padding: "22px 0", borderTop: "1px solid #EDE8E2" }}>
-        「我不是不願意做家事，<br />我只是累了——累的是<em>永遠要當那個想到的人。</em>」
+        「我不是不願意做，<br />我只是累了——累的是<em>永遠要當那個想到的人。</em>」
+      </div>
+    </Wrap>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   1.5 MODE SELECTOR
+   ═══════════════════════════════════════════════════════ */
+
+function ModeSelector({ onSelect }) {
+  return (
+    <Wrap center anim="fadeUp">
+      <div style={{ fontSize: 48, marginBottom: 16, animation: "float 3s ease infinite" }}>🤔</div>
+      <h2 style={{ fontFamily: "'Noto Serif TC', serif", fontSize: 26, fontWeight: 900, color: "#3A3330", marginBottom: 8 }}>你和誰住在一起？</h2>
+      <p style={{ fontSize: 14, color: "#8C8278", marginBottom: 32 }}>我們會根據你的狀況出不同的題目</p>
+      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        {MODES.map(m => (
+          <button key={m.id} onClick={() => onSelect(m.id)} style={{
+            display: "flex", alignItems: "center", gap: 16, width: "100%",
+            padding: "20px 22px", borderRadius: 20, border: "1.5px solid #EDE8E2",
+            background: "white", cursor: "pointer", textAlign: "left",
+            fontFamily: "'Noto Sans TC', sans-serif", transition: "all 0.2s",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.03)",
+          }}
+          onMouseOver={e => { e.currentTarget.style.borderColor = m.color + "66"; e.currentTarget.style.background = m.color + "06"; }}
+          onMouseOut={e => { e.currentTarget.style.borderColor = "#EDE8E2"; e.currentTarget.style.background = "white"; }}
+          >
+            <span style={{ fontSize: 36 }}>{m.icon}</span>
+            <div>
+              <div style={{ fontSize: 17, fontWeight: 600, color: "#3A3330" }}>{m.label}</div>
+              <div style={{ fontSize: 13, color: "#B0A498", marginTop: 2 }}>{m.desc}</div>
+            </div>
+            <span style={{ marginLeft: "auto", fontSize: 18, color: "#C4B8AE" }}>→</span>
+          </button>
+        ))}
       </div>
     </Wrap>
   );
@@ -157,13 +232,14 @@ function QuizLanding({ onStart }) {
    2. QUIZ QUESTIONS
    ═══════════════════════════════════════════════════════ */
 
-function QuizPlay({ onFinish, onQuit }) {
+function QuizPlay({ mode, onFinish, onQuit }) {
   const [idx, setIdx] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [sel, setSel] = useState(-1);
 
-  const q = QUIZ[idx];
-  const progress = ((idx + (sel >= 0 ? 0.5 : 0)) / QUIZ.length) * 100;
+  const questions = QUIZZES[mode] || QUIZZES.family;
+  const q = questions[idx];
+  const progress = ((idx + (sel >= 0 ? 0.5 : 0)) / questions.length) * 100;
 
   const pick = (i) => {
     if (sel >= 0) return;
@@ -171,7 +247,7 @@ function QuizPlay({ onFinish, onQuit }) {
     setTimeout(() => {
       const next = [...answers, SCORES[i]];
       setAnswers(next);
-      if (idx + 1 >= QUIZ.length) {
+      if (idx + 1 >= questions.length) {
         onFinish(next.reduce((a, b) => a + b, 0));
       } else {
         setIdx(idx + 1);
@@ -183,7 +259,7 @@ function QuizPlay({ onFinish, onQuit }) {
   return (
     <Wrap>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-        <span style={{ fontSize: 13, color: "#B0A498", fontWeight: 500 }}>{idx + 1} / {QUIZ.length}</span>
+        <span style={{ fontSize: 13, color: "#B0A498", fontWeight: 500 }}>{idx + 1} / {questions.length}</span>
         <button onClick={onQuit} style={{ background: "none", border: "none", fontSize: 18, color: "#C4B8AE", cursor: "pointer" }}>✕</button>
       </div>
       <div style={{ height: 5, borderRadius: 3, background: "#EDE8E2", overflow: "hidden", marginBottom: 28 }}>
@@ -220,13 +296,14 @@ function QuizPlay({ onFinish, onQuit }) {
    3. QUIZ RESULT
    ═══════════════════════════════════════════════════════ */
 
-function QuizResult({ score, onDemo, onSubscribe }) {
-  const r = getResult(score);
+function QuizResult({ score, mode, onDemo }) {
+  const r = getResult(score, mode);
+  const modeLabel = MODES.find(m => m.id === mode)?.label || "家人";
   const [count, setCount] = useState(0);
   const [show, setShow] = useState(false);
-  const [copied, setCopied] = useState(false);
-
-  const shareText = `我剛測了「家庭情緒勞務指數」，結果是 ${r.pct}%（${r.level}）😳 你也來測測看👉`;
+  const siteUrl = typeof window !== "undefined" ? window.location.href.split("?")[0] : "";
+  const shareText = `我剛測了「${modeLabel}隱形勞務指數」，結果是 ${r.pct}%（${r.level}）😳 你也來測測看👉`;
+  const lineShareUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(siteUrl)}&text=${encodeURIComponent(shareText)}`;
 
   useEffect(() => {
     let f = 0;
@@ -238,25 +315,19 @@ function QuizResult({ score, onDemo, onSubscribe }) {
     return () => clearInterval(t);
   }, [r.pct]);
 
-  const copy = () => {
-    const url = window.location.href.split("?")[0];
-    navigator.clipboard?.writeText(shareText + "\n" + url);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   return (
     <Wrap>
-      {/* Result Card */}
-      <div style={{ background: `${r.color}08`, borderRadius: 28, padding: "36px 28px", textAlign: "center", boxShadow: "0 8px 40px rgba(0,0,0,0.05)", marginBottom: 28, border: `1px solid ${r.color}15` }}>
-        <div style={{ fontSize: 12, fontWeight: 500, color: "#B0A498", letterSpacing: 2, marginBottom: 20 }}>家庭情緒勞務指數</div>
+      {/* Result Card — designed for screenshot sharing */}
+      <div style={{ background: `${r.color}08`, borderRadius: 28, padding: "36px 28px 20px", textAlign: "center", boxShadow: "0 8px 40px rgba(0,0,0,0.05)", marginBottom: 8, border: `1px solid ${r.color}15` }}>
+        <div style={{ fontSize: 12, fontWeight: 500, color: "#B0A498", letterSpacing: 2, marginBottom: 20 }}>{modeLabel}隱形勞務指數</div>
         <div style={{ position: "relative", width: 200, height: 120, margin: "0 auto 8px" }}>
           <svg width="200" height="120" viewBox="0 0 200 120">
             <path d="M 20 110 A 80 80 0 0 1 180 110" fill="none" stroke="#EDE8E2" strokeWidth="12" strokeLinecap="round" />
             <path d="M 20 110 A 80 80 0 0 1 180 110" fill="none" stroke={r.color} strokeWidth="12" strokeLinecap="round" strokeDasharray={`${(count / 100) * 251.2} 251.2`} style={{ transition: "stroke-dasharray 0.3s" }} />
           </svg>
           <div style={{ position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)", textAlign: "center" }}>
-            <div style={{ fontFamily: "'Noto Serif TC', serif", fontSize: 44, fontWeight: 900, color: r.color, lineHeight: 1 }}>{count}%</div>
+            <div style={{ fontFamily: "'Noto Serif TC', serif", fontSize: count >= 100 ? 36 : 44, fontWeight: 900, color: r.color, lineHeight: 1 }}>{count}%</div>
             <div style={{ fontSize: 14, fontWeight: 500, color: "#8C8278", marginTop: 4 }}>{r.level}</div>
           </div>
         </div>
@@ -268,25 +339,22 @@ function QuizResult({ score, onDemo, onSubscribe }) {
         </div>
       </div>
 
-      {/* Actions */}
+      {/* Screenshot hint */}
+      <div style={{ textAlign: "center", padding: "10px 0 20px", fontSize: 12, color: "#C4B8AE" }}>
+        📱 截圖就能分享到限動 / 群組
+      </div>
+
+      {/* Share buttons */}
       <div style={{ opacity: show ? 1 : 0, transform: show ? "translateY(0)" : "translateY(20px)", transition: "all 0.5s" }}>
-        <Btn full secondary onClick={copy} style={{ marginBottom: 12 }}>
-          {copied ? "✅ 已複製！" : "📋 複製結果，分享給另一半"}
-        </Btn>
-        <div style={{ padding: "10px 16px", background: "#F5F0EC", borderRadius: 12, marginBottom: 32, fontSize: 13, color: "#8C8278", fontStyle: "italic", lineHeight: 1.6 }}>
-          「{shareText.slice(0, 50)}...」
-        </div>
 
-        <div style={{ textAlign: "center", marginBottom: 24 }}>
-          <div style={{ fontSize: 14, color: "#B0A498", marginBottom: 16 }}>想改變這個數字？</div>
-          <Btn full onClick={onDemo}>免費體驗「家務分擔」工具 →</Btn>
-          <div style={{ fontSize: 12, color: "#C4B8AE", marginTop: 10 }}>不用註冊，立即體驗完整功能</div>
-        </div>
+        {/* LINE share - most important for Taiwan */}
+        <a href={lineShareUrl} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, width: "100%", padding: "14px", background: "#06C755", color: "white", borderRadius: 16, fontSize: 15, fontWeight: 600, textDecoration: "none", marginBottom: 10, fontFamily: "'Noto Sans TC', sans-serif", boxShadow: "0 4px 16px rgba(6,199,85,0.2)" }}>
+          <span style={{ fontSize: 20 }}>💬</span> 用 LINE 分享給{mode === "roommate" ? "室友" : mode === "couple" ? "另一半" : "家人"}
+        </a>
 
-        <div style={{ textAlign: "center", padding: "20px 0", borderTop: "1px solid #EDE8E2" }}>
-          <div style={{ fontSize: 13, color: "#B0A498", marginBottom: 10 }}>或者先追蹤我們的進度</div>
-          <Btn secondary onClick={onSubscribe}>📧 留下 Email，搶先使用正式版</Btn>
-        </div>
+        <Btn full onClick={onDemo} style={{ marginBottom: 10 }}>🏠 免費試玩「家務分擔」工具 →</Btn>
+        <div style={{ fontSize: 12, color: "#C4B8AE", textAlign: "center", marginBottom: 20 }}>不用註冊，立即體驗完整功能</div>
+
       </div>
     </Wrap>
   );
@@ -617,10 +685,10 @@ function MainApp({ familyName, initMembers, onSubscribe }) {
         <div style={{ position: "fixed", bottom: 68, left: "50%", transform: "translateX(-50%)", width: "calc(100% - 40px)", maxWidth: 440, zIndex: 60, animation: "sheetUp 0.4s ease" }}>
           <Card style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px 16px", boxShadow: "0 8px 32px rgba(0,0,0,0.1)", border: "1px solid #E8A0BF33" }}>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: "#3A3330" }}>喜歡這個工具嗎？ ✨</div>
-              <div style={{ fontSize: 12, color: "#8C8278", marginTop: 2 }}>正式版開發中，留 Email 搶先使用</div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: "#3A3330" }}>免費領《分工溝通指南》📖</div>
+              <div style={{ fontSize: 12, color: "#8C8278", marginTop: 2 }}>5 個不吵架的對話範本</div>
             </div>
-            <Btn small onClick={onSubscribe}>留下 Email</Btn>
+            <Btn small onClick={onSubscribe}>免費領取</Btn>
             <button onClick={() => setShowCTA(false)} style={{ background: "none", border: "none", color: "#C4B8AE", cursor: "pointer", fontSize: 14 }}>✕</button>
           </Card>
         </div>
@@ -689,27 +757,33 @@ function EmailModal({ onClose }) {
   };
 
   if (status === "done") return (
-    <Sheet title="🎉 訂閱成功！" onClose={onClose}>
+    <Sheet title="🎉 領取成功！" onClose={onClose}>
       <div style={{ textAlign: "center", padding: "20px 0" }}>
-        <div style={{ fontSize: 48, marginBottom: 16 }}>💌</div>
-        <div style={{ fontSize: 16, fontWeight: 600, color: "#3A3330", marginBottom: 8 }}>感謝你的支持！</div>
-        <div style={{ fontSize: 14, color: "#8C8278", lineHeight: 1.7 }}>正式版上線時會第一時間通知你。<br />我們會用心打造一個讓「隱形勞務」<br />被看見的工具。</div>
+        <div style={{ fontSize: 48, marginBottom: 16 }}>📖</div>
+        <div style={{ fontSize: 16, fontWeight: 600, color: "#3A3330", marginBottom: 8 }}>指南已準備好！</div>
+        <div style={{ fontSize: 14, color: "#8C8278", lineHeight: 1.7 }}>我們會盡快將《家庭分工溝通指南》<br />寄到你的信箱。<br /><br />同時，正式版工具上線時<br />也會第一時間通知你 ✨</div>
       </div>
-      <Btn full onClick={onClose}>好的 ✨</Btn>
+      <Btn full onClick={onClose}>好的，期待收到！</Btn>
     </Sheet>
   );
 
   return (
-    <Sheet title="📧 搶先使用正式版" onClose={onClose}>
-      <div style={{ fontSize: 14, color: "#8C8278", lineHeight: 1.7, marginBottom: 20 }}>
-        留下你的 Email，正式版上線時我們會第一時間通知你。不會寄垃圾信，承諾。
+    <Sheet title="📖 免費領取《溝通指南》" onClose={onClose}>
+      <div style={{ background: "#F5F0EC", borderRadius: 14, padding: "16px", marginBottom: 20 }}>
+        <div style={{ fontSize: 14, fontWeight: 600, color: "#3A3330", marginBottom: 8 }}>指南內容包含：</div>
+        <div style={{ fontSize: 13, color: "#6B635C", lineHeight: 1.8 }}>
+          ✅ 5 個「不吵架」的分工對話範本<br/>
+          ✅ 隱形勞務盤點清單（可列印）<br/>
+          ✅ 如何讓同住的人「看見」你的付出<br/>
+          ✅ 從今天開始的 3 個小改變
+        </div>
       </div>
       <input value={email} onChange={e => setEmail(e.target.value)} onKeyDown={e => e.key === "Enter" && submit()} type="email" placeholder="your@email.com" style={inputStyle} autoFocus />
       {status === "error" && <div style={{ fontSize: 13, color: "#D4456A", marginBottom: 12 }}>⚠️ 發生錯誤，請稍後再試</div>}
       <Btn full onClick={submit} disabled={status === "loading"}>
-        {status === "loading" ? "送出中..." : "訂閱通知 →"}
+        {status === "loading" ? "送出中..." : "免費領取 →"}
       </Btn>
-      <div style={{ fontSize: 12, color: "#C4B8AE", textAlign: "center", marginTop: 10 }}>我們尊重你的隱私，隨時可取消訂閱</div>
+      <div style={{ fontSize: 12, color: "#C4B8AE", textAlign: "center", marginTop: 10 }}>不會寄垃圾信，隨時可取消訂閱</div>
     </Sheet>
   );
 }
@@ -720,6 +794,7 @@ function EmailModal({ onClose }) {
 
 export default function App() {
   const [phase, setPhase] = useState("landing");
+  const [quizMode, setQuizMode] = useState("family");
   const [quizScore, setQuizScore] = useState(0);
   const [familyName, setFamilyName] = useState("");
   const [members, setMembers] = useState([]);
@@ -727,15 +802,19 @@ export default function App() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#FBF7F3" }}>
-      {phase === "landing" && <QuizLanding onStart={() => setPhase("quiz")} />}
+      {phase === "landing" && <QuizLanding onStart={() => setPhase("mode")} />}
+
+      {phase === "mode" && <ModeSelector onSelect={m => { setQuizMode(m); setPhase("quiz"); }} />}
 
       {phase === "quiz" && <QuizPlay
+        mode={quizMode}
         onFinish={score => { setQuizScore(score); setPhase("result"); }}
         onQuit={() => setPhase("landing")}
       />}
 
       {phase === "result" && <QuizResult
         score={quizScore}
+        mode={quizMode}
         onDemo={() => setPhase("onboarding")}
         onSubscribe={() => setEmailOpen(true)}
       />}
