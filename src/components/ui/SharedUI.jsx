@@ -12,7 +12,7 @@ export const Wrap = ({ children, center, anim = "fadeUp" }) => (
 
 export const Toast = ({ msg }) => msg ? (
   <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 999, pointerEvents: "none" }}>
-    <div style={{ background: "white", borderRadius: 20, padding: "20px 36px", boxShadow: "0 20px 60px rgba(0,0,0,0.12)", fontSize: 18, fontWeight: 600, color: "#D4456A", animation: "pop 0.35s ease" }}>{msg}</div>
+    <div style={{ background: "white", borderRadius: 20, padding: "20px 36px", boxShadow: "0 20px 60px rgba(0,0,0,0.12)", fontSize: 16, fontWeight: 600, color: "#3A3330", animation: "pop 0.35s ease" }}>{msg}</div>
   </div>
 ) : null;
 
@@ -21,7 +21,7 @@ export const Sheet = ({ title, onClose, children }) => (
     <div style={{ background: "#FBF7F3", borderRadius: "28px 28px 0 0", padding: "28px 24px 36px", width: "100%", maxWidth: 480, animation: "sheetUp 0.3s ease" }} onClick={e => e.stopPropagation()}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
         <span style={{ fontFamily: "'Noto Serif TC', serif", fontSize: 18, fontWeight: 700, color: "#3A3330" }}>{title}</span>
-        <button onClick={onClose} style={{ background: "none", border: "none", fontSize: 20, color: "#C4B8AE", cursor: "pointer" }}>✕</button>
+        <button onClick={onClose} style={{ background: "none", border: "none", fontSize: 20, color: "#C4B8AE", cursor: "pointer" }}>&times;</button>
       </div>
       {children}
     </div>
@@ -79,6 +79,5 @@ export const GlobalStyles = () => (
     @keyframes slideIn { from { opacity:0; transform:translateX(30px) } to { opacity:1; transform:translateX(0) } }
     @keyframes pop { 0% { transform:scale(.5);opacity:0 } 60% { transform:scale(1.1) } 100% { transform:scale(1);opacity:1 } }
     @keyframes sheetUp { from { transform:translateY(100%) } to { transform:translateY(0) } }
-    @keyframes pulse { 0%,100% { transform:scale(1) } 50% { transform:scale(1.05) } }
   `}</style>
 );

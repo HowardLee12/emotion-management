@@ -4,9 +4,9 @@ export function getResult(score, mode) {
   const pct = Math.round((score / 30) * 100);
 
   const labels = {
-    family: { high: "家庭隱形 CEO", mid: "家庭主要操心者", low: "分工意識不錯", good: "模範家庭分工", unit: "家庭", other: "家人" },
-    couple: { high: "感情裡的隱形 CEO", mid: "關係中的主要操心者", low: "分工還算平衡", good: "模範情侶分工", unit: "這段關係", other: "另一半" },
-    roommate: { high: "合租界的隱形 CEO", mid: "宿舍的主要操心者", low: "室友分工還行", good: "模範室友分工", unit: "這個家", other: "室友" },
+    family: { high: "家庭隱形管家", mid: "家庭主要操心者", low: "分工意識不錯", good: "模範家庭分工", unit: "家庭", other: "家人" },
+    couple: { high: "關係裡的隱形推手", mid: "關係中的主要操心者", low: "分工還算平衡", good: "模範情侶分工", unit: "這段關係", other: "另一半" },
+    roommate: { high: "合租界的隱形管家", mid: "宿舍的主要操心者", low: "室友分工還行", good: "模範室友分工", unit: "這個家", other: "室友" },
   };
   const L = labels[mode] || labels.family;
 
@@ -49,7 +49,7 @@ export function getResult(score, mode) {
 
 export function generateShareText(result, mode, modeLabel) {
   const p = result.personality;
-  return `${p.emoji} 我的隱形勞務人格是「${p.type}」${p.tag}\n指數 ${result.pct}%（${result.level}）\n\n你也來測測看👉`;
+  return `我的隱形勞務人格是「${p.type}」（${p.tag}）\n指數 ${result.pct}%（${result.level}）\n\n你也來測測看`;
 }
 
 export function generateCompareId() {

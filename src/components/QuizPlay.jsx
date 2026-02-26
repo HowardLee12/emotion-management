@@ -30,13 +30,15 @@ export default function QuizPlay({ mode, onFinish, onQuit }) {
     <Wrap>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
         <span style={{ fontSize: 13, color: "#B0A498", fontWeight: 500 }}>{idx + 1} / {questions.length}</span>
-        <button onClick={onQuit} style={{ background: "none", border: "none", fontSize: 18, color: "#C4B8AE", cursor: "pointer" }}>✕</button>
+        <button onClick={onQuit} style={{ background: "none", border: "none", fontSize: 18, color: "#C4B8AE", cursor: "pointer" }}>&times;</button>
       </div>
       <div style={{ height: 5, borderRadius: 3, background: "#EDE8E2", overflow: "hidden", marginBottom: 28 }}>
         <div style={{ height: "100%", borderRadius: 3, background: "linear-gradient(90deg, #E8A0BF, #D4456A)", transition: "width 0.5s", width: `${progress}%` }} />
       </div>
-      <Card style={{ textAlign: "center", padding: "32px 24px 28px", marginBottom: 24, animation: "slideIn 0.35s ease", borderRadius: 24 }} key={idx}>
-        <div style={{ fontSize: 40, marginBottom: 14, animation: "float 3s ease infinite" }}>{q.icon}</div>
+      <Card style={{ textAlign: "center", padding: "36px 24px 32px", marginBottom: 24, animation: "slideIn 0.35s ease", borderRadius: 24 }} key={idx}>
+        <div style={{ width: 56, height: 56, borderRadius: "50%", background: "linear-gradient(135deg, #E8A0BF15, #D4456A10)", display: "inline-flex", alignItems: "center", justifyContent: "center", marginBottom: 18 }}>
+          <span style={{ fontFamily: "'Noto Serif TC', serif", fontSize: 20, fontWeight: 900, color: "#D4456A" }}>Q{idx + 1}</span>
+        </div>
         <h2 style={{ fontFamily: "'Noto Serif TC', serif", fontSize: 18, fontWeight: 700, color: "#3A3330", lineHeight: 1.6 }}>{q.q}</h2>
       </Card>
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>

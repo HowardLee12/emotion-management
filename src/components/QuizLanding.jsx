@@ -23,7 +23,7 @@ export default function QuizLanding({ onStart }) {
           <div style={{ fontSize: 11, lineHeight: 1.5, color: "#B0A498" }}>「計劃與協調」的<br />時間差距可達三倍</div>
         </div>
       </Card>
-      <Btn full onClick={onStart}>開始測驗 →</Btn>
+      <Btn full onClick={onStart}>開始測驗</Btn>
       <div style={{ fontSize: 12, color: "#C4B8AE", marginTop: 14, marginBottom: 44 }}>適用於家人 ・ 情侶 ・ 室友 ・ 完全匿名</div>
       <div style={{ fontSize: 14, fontStyle: "italic", color: "#B0A498", lineHeight: 1.8, padding: "22px 0", borderTop: "1px solid #EDE8E2" }}>
         「我不是不願意做，<br />我只是累了——累的是<em>永遠要當那個想到的人。</em>」
